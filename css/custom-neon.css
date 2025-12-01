@@ -1,0 +1,106 @@
+:root {
+  --neon-primary: #6c63ff;
+  --neon-secondary: #00e0ff;
+  --neon-accent: #ff7242;
+  --neon-bg-dark: #05070f;
+  --neon-grid: rgba(255, 255, 255, 0.04);
+}
+
+/* 全局背景加上暗色星云纹理和网格线 */
+body {
+  background-color: var(--neon-bg-dark);
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(255, 114, 66, 0.18), transparent 55%),
+    radial-gradient(circle at 80% 0%, rgba(0, 224, 255, 0.12), transparent 50%),
+    linear-gradient(120deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(240deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(var(--neon-grid), var(--neon-grid));
+  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px, 4px 4px;
+  color: #f8f8ff;
+}
+
+/* 霓虹标题 */
+.site-title,
+.header__title,
+.post-title,
+.card-widget .item-title {
+  color: var(--neon-secondary);
+  text-shadow: 0 0 20px rgba(108, 99, 255, 0.8);
+  animation: glowPulse 3.6s ease-in-out infinite;
+}
+
+/* 按钮和高亮标签 */
+.button,
+.btn,
+.tag-cloud-list a,
+.pagination .page-number,
+.rightside-button-item {
+  background: linear-gradient(135deg, var(--neon-primary), var(--neon-secondary));
+  border: none;
+  color: #ffffff !important;
+  box-shadow: 0 8px 25px rgba(108, 99, 255, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.button:hover,
+.btn:hover,
+.tag-cloud-list a:hover,
+.pagination .page-number.current,
+.rightside-button-item:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 35px rgba(0, 224, 255, 0.45);
+}
+
+/* 文章卡片顶部加霓虹描边 */
+.recent-post-item,
+.article-sort-item,
+.card-widget {
+  border: 1px solid rgba(108, 99, 255, 0.25);
+  box-shadow: 0 10px 35px rgba(5, 7, 15, 0.8);
+  position: relative;
+}
+
+.recent-post-item::before,
+.article-sort-item::before,
+.card-widget::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(120deg, rgba(108, 99, 255, 0.8), rgba(0, 224, 255, 0.8));
+  -webkit-mask:
+    linear-gradient(#0000, #0000),
+    linear-gradient(#000, #000);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* 霓虹发光分割线 */
+hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--neon-secondary), transparent);
+  box-shadow: 0 0 25px rgba(0, 224, 255, 0.45);
+}
+
+/* 代码块添加霓虹边框 */
+figure.highlight,
+pre code {
+  background: rgba(5, 7, 15, 0.9) !important;
+  border: 1px solid rgba(0, 224, 255, 0.35);
+  box-shadow: inset 0 0 25px rgba(0, 224, 255, 0.1), 0 15px 35px rgba(0, 0, 0, 0.7);
+}
+
+/* 霓虹标题动画 */
+@keyframes glowPulse {
+  0%,
+  100% {
+    text-shadow: 0 0 15px rgba(0, 224, 255, 0.5), 0 0 35px rgba(108, 99, 255, 0.8);
+  }
+  50% {
+    text-shadow: 0 0 25px rgba(255, 114, 66, 0.4), 0 0 45px rgba(0, 224, 255, 0.9);
+  }
+}
+

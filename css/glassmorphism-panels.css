@@ -1,0 +1,98 @@
+:root {
+  --glass-bg: rgba(12, 16, 34, 0.66);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-highlight: rgba(108, 99, 255, 0.4);
+  --glass-blur: 18px;
+}
+
+/* 通用玻璃拟态容器 - 仅用于侧边栏等小部件，不用于主页和文章 */
+.glass-panel,
+.card-widget,
+.flink-item {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border-radius: 22px;
+  box-shadow:
+    0 20px 45px rgba(5, 7, 15, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border 0.35s ease;
+}
+
+/* 主页和文章卡片：去掉磨砂玻璃效果 */
+#recent-posts .recent-post-item,
+.article-sort-item {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background: rgba(12, 16, 34, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 22px;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border 0.35s ease;
+}
+
+.glass-panel:hover,
+.card-widget:hover,
+.flink-item:hover {
+  transform: translateY(-6px);
+  border-color: var(--glass-highlight);
+  box-shadow:
+    0 25px 55px rgba(5, 7, 15, 0.75),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+/* 主页和文章卡片悬停效果 */
+#recent-posts .recent-post-item:hover,
+.article-sort-item:hover {
+  transform: translateY(-4px);
+  border-color: rgba(108, 99, 255, 0.5);
+  box-shadow: 0 15px 40px rgba(5, 7, 15, 0.8);
+}
+
+/* 顶部信息条 */
+.recent-post-item .post-meta,
+.card-widget .card-info {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 18px;
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* 侧边栏作者卡片特殊效果 */
+.card-author {
+  background: linear-gradient(140deg, rgba(108, 99, 255, 0.25), rgba(0, 224, 255, 0.18));
+  box-shadow: 0 15px 45px rgba(108, 99, 255, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-author::after {
+  content: '';
+  position: absolute;
+  top: -40%;
+  left: -20%;
+  width: 160%;
+  height: 180%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.35), transparent 60%);
+  opacity: 0.45;
+  transform: rotate(15deg);
+  pointer-events: none;
+}
+
+/* 标签云玻璃胶囊 */
+.tag-cloud-list a {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  backdrop-filter: blur(10px);
+  padding: 6px 16px;
+}
+
+/* 页脚与导航按钮同样使用玻璃材质 */
+.footer,
+.rightside-button-item {
+  background: rgba(5, 7, 15, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+}
+

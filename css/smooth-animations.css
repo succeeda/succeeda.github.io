@@ -1,0 +1,203 @@
+/* ==========================================
+   丝滑切换动画和加载动画
+   ========================================== */
+
+/* 页面切换淡入淡出动画 */
+#web_bg,
+#page-header,
+#recent-posts,
+.layout_post,
+.layout_page {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 文章卡片依次出现动画 */
+#recent-posts .recent-post-item {
+  animation: fadeInScale 0.5s ease-out backwards;
+}
+
+#recent-posts .recent-post-item:nth-child(1) { animation-delay: 0.1s; }
+#recent-posts .recent-post-item:nth-child(2) { animation-delay: 0.2s; }
+#recent-posts .recent-post-item:nth-child(3) { animation-delay: 0.3s; }
+#recent-posts .recent-post-item:nth-child(4) { animation-delay: 0.4s; }
+#recent-posts .recent-post-item:nth-child(5) { animation-delay: 0.5s; }
+#recent-posts .recent-post-item:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* 侧边栏卡片淡入动画 */
+.card-widget {
+  animation: slideInRight 0.5s ease-out backwards;
+}
+
+.card-widget:nth-child(1) { animation-delay: 0.1s; }
+.card-widget:nth-child(2) { animation-delay: 0.2s; }
+.card-widget:nth-child(3) { animation-delay: 0.3s; }
+.card-widget:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 页面加载时的进度指示器 */
+#loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(108, 99, 255, 0.2);
+  z-index: 9999;
+  overflow: hidden;
+}
+
+#loading::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, #6c63ff, #00e0ff, transparent);
+  animation: loadingProgress 1.5s ease-in-out infinite;
+}
+
+@keyframes loadingProgress {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* 页面切换时的加载遮罩 */
+.page-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(5, 7, 15, 0.95);
+  z-index: 9998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.page-transition.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* 链接点击时的涟漪效果 */
+a {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+a::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(108, 99, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+  pointer-events: none;
+}
+
+a:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* 平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 页面元素进入视口时的淡入动画 */
+.fade-in-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 图片懒加载时的占位动画 */
+img[loading="lazy"] {
+  background: linear-gradient(90deg, rgba(108, 99, 255, 0.1) 25%, rgba(0, 224, 255, 0.1) 50%, rgba(108, 99, 255, 0.1) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* 按钮点击时的弹跳反馈 */
+button,
+.btn,
+.button {
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+button:active,
+.btn:active,
+.button:active {
+  transform: scale(0.95);
+}
+
+/* 卡片悬停时的3D倾斜效果 */
+.recent-post-item,
+.card-widget {
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.recent-post-item:hover,
+.card-widget:hover {
+  transform: translateY(-5px) rotateX(2deg);
+}
+

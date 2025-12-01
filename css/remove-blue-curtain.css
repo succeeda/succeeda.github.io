@@ -1,0 +1,39 @@
+/* ==========================================
+   去掉文章页面的蓝色幕布背景
+   ========================================== */
+
+/* 文章内容区域去掉蓝色背景 */
+.layout_post,
+#article-container,
+#post {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* 文章卡片背景改为透明或暗色半透明 */
+.post-bg,
+#page-header.post-bg {
+  background: transparent !important;
+}
+
+/* 文章内容卡片 */
+#article-container,
+#post {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* 如果文章有蓝色遮罩层，去掉它 */
+#page-header.post-bg::before,
+.layout_post::before {
+  display: none !important;
+}
+
+/* 确保文章内容清晰可见 */
+#article-container {
+  background: rgba(12, 16, 34, 0.6);
+  border-radius: 16px;
+  padding: 2rem;
+  margin: 1rem 0;
+}
+
